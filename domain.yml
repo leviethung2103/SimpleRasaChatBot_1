@@ -1,0 +1,68 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - ask_name
+  - give_name
+
+
+entities:
+  - cust_sex
+  - cust_name
+
+slots:
+  cust_sex:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: cust_sex
+      intent: give_name
+  cust_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: cust_name
+      intent: give_name
+
+responses:
+  utter_greet:
+  - text: "Kính chào Quý khách! Quý khách vui lòng cho biết tên để tiện xưng hô được không ah?"
+
+  utter_greet_with_name:
+  - text: "Kính chào {cust_sex} {cust_name}. ABC Shop có thể giúp gì được {cust_sex} {cust_name} ạ?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+
+  utter_ask_name:
+  - text: "Em họ Bank, tên Bot! Người ta hay gọi em là Bank Bot thông minh xinh đẹp giỏi giang nhất vũ trụ ạ! Quý khách cần trợ giúp gì ạ?"
+  - text: "Dạ thưa. Tên Tiếng Việt của em là Trợ lý ảo Ngân hàng nhưng em thích gọi bằng tên Tiếng Anh là Bank Bot cho nó Tây!"
+  
+  utter_unclear:
+  - text: "Thưa quý khách, hiện tại tôi chưa hiểu được yêu cầu của Quý khách. "
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
